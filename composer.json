@@ -3,8 +3,11 @@
     "description": "Ip validation for external ips",
     "autoload": {
         "psr-4": {
-            "IPValidator\\": "/"
+            "Validator\\": "Validator/"
         }
+    },
+    "config": {
+        "vendor-dir": "vendor"
     },
     "authors": [
         {
@@ -12,5 +15,7 @@
             "email": "nikitashvictor@pdffiller.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpunit/phpunit": "^5.2"
+    }
 }

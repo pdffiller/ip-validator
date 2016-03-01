@@ -1,11 +1,10 @@
 <?php
 
-namespace IPValidator;
+namespace Validator;
 
 
 class IPValidator
 {
-
     /**
      * Checks url for local ip address, returns true if local url was found.
      * @param $url
@@ -18,7 +17,11 @@ class IPValidator
         // http://189.189.189.189?action=test => [https, 189.189.189.189?action=test]
         list($protocol, $address) = explode('://', $url);
 
-        if(empty(strpos($address, 'localhost')) !== true){
+        if(strpos($address, 'localhost') !== false){
+            return false;
+        }
+        //Special check cause of next will bw intval< and address like www.example.com.ua =>explode=>implode(intval) will be 0.0.0.0
+        if($address == '0.0.0.0'){
             return false;
         }
 
@@ -36,10 +39,11 @@ class IPValidator
         }
 
         // Check invalid ip parts
+        // *.*.*.0 - subnet
         // *.*.*.255 - broadcast
         // 0.*.*.* - reserved
         // [224 - 239].*.*.* - reserved
-        if(($parts[0] > 223  && $parts[0] < 240) || $parts[0] === 0 || $parts[1] > 255 || $parts[2] > 255 || $parts[3] > 254){
+        if(($parts[0] > 223  && $parts[0] < 240) || $parts[0] === 0 || $parts[0] > 254 || $parts[1] > 255 || $parts[2] > 255 || $parts[3] > 254 || $parts[3] == 0){
             return false;
         }
 
