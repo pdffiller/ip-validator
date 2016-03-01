@@ -1,0 +1,16 @@
+{
+    "name": "nikitash/ip-validator",
+    "description": "Ip validation for external ips",
+    "autoload": {
+        "psr-4": {
+            "IPValidator\\": "/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Victor Nikitash",
+            "email": "nikitashvictor@pdffiller.com"
+        }
+    ],
+    "require": {}
+}
