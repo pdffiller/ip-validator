@@ -16,6 +16,8 @@
         }
     ],
     "require": {
-        "phpunit/phpunit": "^5.2"
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.1"
     }
 }

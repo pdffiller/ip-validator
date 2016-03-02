@@ -12,10 +12,6 @@ before_script:
 - composer install
 - composer dump-autoload
 
-after_script: # here's a build step block
-- echo "We can put normal shell commands here"
-- echo "more shell commands here"
-
 script: phpunit --configuration phpunit_test.xml --coverage-text
 
 notifications:
