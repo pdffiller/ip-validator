@@ -1,6 +1,6 @@
 <?php
 
-require "vendor/autoload.php";
+require __DIR__."../../vendor/autoload.php";
 use Validator\IPValidator as IPValidator;
 
 class IPValidatorTest extends PHPUnit_Framework_TestCase {
