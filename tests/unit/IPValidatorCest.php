@@ -1,13 +1,32 @@
 <?php
 
-require __DIR__."../../vendor/autoload.php";
-use Validator\IPValidator as IPValidator;
+class IPValidatorCest
+{
 
-class IPValidatorTest extends PHPUnit_Framework_TestCase {
+    protected $addresses;
 
-    public function testIP(){
+    public function _before(UnitTester $I)
+    {
+        $this->addresses = $this->_getAddresses();
+    }
 
-        $addresses = [
+    public function _after(UnitTester $I)
+    {
+    }
+
+    // tests
+    public function tryToTest(UnitTester $I)
+    {
+        foreach ($this->addresses as $host => $expected){
+            require_once (realpath(__DIR__ . DIRECTORY_SEPARATOR . '../../')."/validator/IPValidator.php");
+            foreach($this->addresses as $host => $expected){
+                $I->assertEquals($expected, \Validator\IPValidator::isIncorrectIpAddress($host));
+            }
+        }
+    }
+
+    private function _getAddresses(){
+        return [
             'http://localhost' => false,
             'https://32.43.12.34' => true,
             'http://10.43.12.34' => false,
@@ -25,11 +44,5 @@ class IPValidatorTest extends PHPUnit_Framework_TestCase {
             'http://10.10.10.10' => false,
             'http://0.0.0.0' => false,
         ];
-
-        foreach ($addresses as $host => $expected){
-            PHPUnit_Framework_Assert::assertEquals($expected, IPValidator::isIncorrectIpAddress($host));
-        }
-
     }
-
 }

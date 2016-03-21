@@ -12,7 +12,7 @@ before_script:
 - composer install
 - composer dump-autoload
 
-script: phpunit --configuration phpunit_test.xml --coverage-text
+script: php bin/codecept.phar run
 
 notifications:
     on_success: always
