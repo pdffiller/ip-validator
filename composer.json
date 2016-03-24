@@ -3,7 +3,7 @@
     "description": "Ip validation for external ips",
     "autoload": {
         "psr-4": {
-            "Validator\\": "Validator/"
+            "Validator\\": "validator/"
         }
     },
     "config": {
